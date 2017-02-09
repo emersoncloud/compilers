@@ -11,7 +11,7 @@ int main() {
         print(e);
         std::cout << " == " << eval(e).data.b << '\n';
 
-        Expr * en = new Add_expr(new Int_expr(1), new Int_expr(3));
+        Expr * en = new Mul_expr(new Int_expr(2), new Int_expr(3));
         print(en);
         std::cout << " == " << eval(en).data.n << '\n';
     }

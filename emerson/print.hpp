@@ -29,13 +29,24 @@ bool needs_parens(Expr* e) {
         void visit(Sub_expr*e) {
             r = true;
         }
- 
+        void visit(Mul_expr*e) {
+            r = true;
+        }
+        void visit(Div_expr*e) {
+            r = true;
+        }
+        void visit(Mod_expr*e) {
+            r = true;
+        }
+        void visit(Neg_expr*e) {
+            r = true;
+        }
     };
+
     V vis;
     e->accept(vis);
     return vis.r;
 }
-
 
 void print(Expr* e) {
     struct V: Expr::Visitor {
@@ -89,6 +100,25 @@ void print(Expr* e) {
             print_enclosed(e->e1);
             std::cout << '-';
             print_enclosed(e->e2);
+        }
+        void visit(Mul_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << '*';
+            print_enclosed(e->e2);
+        }
+        void visit(Div_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << '/';
+            print_enclosed(e->e2);
+        }
+        void visit(Mod_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << '%';
+            print_enclosed(e->e2);
+        }
+        void visit(Neg_expr*e ) {
+            std::cout << '-';
+            print_enclosed(e->e1);
         }
     };
     V vis;

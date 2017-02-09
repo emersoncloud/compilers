@@ -51,10 +51,10 @@ struct Expr::Visitor {
     virtual void visit(Int_expr*) = 0;
     virtual void visit(Add_expr*) = 0;
     virtual void visit(Sub_expr*) = 0;
-    //virtual void visit(Mul_expr*) = 0;
-    //virtual void visit(Div_expr*) = 0;
-    //virtual void visit(Mod_expr*) = 0;
-    //virtual void visit(Neg_expr*) = 0;
+    virtual void visit(Mul_expr*) = 0;
+    virtual void visit(Div_expr*) = 0;
+    virtual void visit(Mod_expr*) = 0;
+    virtual void visit(Neg_expr*) = 0;
 };                     
 
 struct Bool_expr : Expr {
@@ -129,45 +129,45 @@ struct Sub_expr : Expr {
         return v.visit(this);
     }
 };
-//
-//struct Mul_expr : Expr {
-//    Expr* e1;
-//    Expr* e2;
-//    Mul_expr(Expr* e1, Expr* e2)
-//        :e1(e1), e2(e2) {}
-//    void accept(Visitor& v) {
-//        return v.visit(this);
-//    }
-//};
-//
-//struct Div_expr : Expr {
-//    Expr* e1;
-//    Expr* e2;
-//    Div_expr(Expr* e1, Expr* e2)
-//        :e1(e1), e2(e2) {}
-//    void accept(Visitor& v) {
-//        return v.visit(this);
-//    }
-//};
-//
-//struct Mod_expr : Expr {
-//    Expr* e1;
-//    Expr* e2;
-//    Mod_expr(Expr* e1, Expr* e2)
-//        :e1(e1), e2(e2) {}
-//    void accept(Visitor& v) {
-//        return v.visit(this);
-//    }
-//};
-//
-//struct Neg_expr : Expr {
-//    Expr* e1;
-//    Neg_expr(Expr* e1)
-//        :e1(e1) {}
-//    void accept(Visitor& v) {
-//        return v.visit(this);
-//    }
-//};
+
+struct Mul_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Mul_expr(Expr* e1, Expr* e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
+
+struct Div_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Div_expr(Expr* e1, Expr* e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
+
+struct Mod_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Mod_expr(Expr* e1, Expr* e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
+
+struct Neg_expr : Expr {
+    Expr* e1;
+    Neg_expr(Expr* e1)
+        :e1(e1) {}
+    void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
 
 //struct Cond_expr : Expr {
 //    Expr* e1;
