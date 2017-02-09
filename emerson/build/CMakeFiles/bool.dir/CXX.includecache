@@ -6,27 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/home/emerson/github/compilers/homework/emerson/ast.hpp
+/home/emerson/github/compilers/emerson/ast.hpp
 cassert
 -
 
-/home/emerson/github/compilers/homework/emerson/eval.hpp
+/home/emerson/github/compilers/emerson/eval.hpp
 ast.hpp
-/home/emerson/github/compilers/homework/emerson/ast.hpp
+/home/emerson/github/compilers/emerson/ast.hpp
 
-/home/emerson/github/compilers/homework/emerson/main.cpp
+/home/emerson/github/compilers/emerson/main.cpp
 iostream
 -
 ast.hpp
-/home/emerson/github/compilers/homework/emerson/ast.hpp
+/home/emerson/github/compilers/emerson/ast.hpp
 eval.hpp
-/home/emerson/github/compilers/homework/emerson/eval.hpp
+/home/emerson/github/compilers/emerson/eval.hpp
 print.hpp
-/home/emerson/github/compilers/homework/emerson/print.hpp
+/home/emerson/github/compilers/emerson/print.hpp
 
-/home/emerson/github/compilers/homework/emerson/print.hpp
+/home/emerson/github/compilers/emerson/print.hpp
 ast.hpp
-/home/emerson/github/compilers/homework/emerson/ast.hpp
+/home/emerson/github/compilers/emerson/ast.hpp
 iostream
 -
 

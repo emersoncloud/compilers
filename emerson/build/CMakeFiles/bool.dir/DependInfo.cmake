@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/emerson/github/compilers/homework/emerson/main.cpp" "/home/emerson/github/compilers/homework/emerson/build/CMakeFiles/bool.dir/main.cpp.o"
+  "/home/emerson/github/compilers/emerson/main.cpp" "/home/emerson/github/compilers/emerson/build/CMakeFiles/bool.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
