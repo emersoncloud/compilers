@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/emerson/github/notes/compilers/homework/compiler-example/ast.hpp
+cassert
+-
+
+/home/emerson/github/notes/compilers/homework/compiler-example/eval.hpp
+ast.hpp
+/home/emerson/github/notes/compilers/homework/compiler-example/ast.hpp
+
+/home/emerson/github/notes/compilers/homework/compiler-example/main.cpp
+iostream
+-
+ast.hpp
+/home/emerson/github/notes/compilers/homework/compiler-example/ast.hpp
+eval.hpp
+/home/emerson/github/notes/compilers/homework/compiler-example/eval.hpp
+print.hpp
+/home/emerson/github/notes/compilers/homework/compiler-example/print.hpp
+
+/home/emerson/github/notes/compilers/homework/compiler-example/print.hpp
+ast.hpp
+/home/emerson/github/notes/compilers/homework/compiler-example/ast.hpp
+iostream
+-
+

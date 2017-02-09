@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++14   -L/home/emerson/fftw-3.3.5/lib CMakeFiles/bool.dir/main.cpp.o  -o bool -rdynamic 

@@ -1,0 +1,3 @@
+/home/emerson/github/compilers/homework/emerson/build/CMakeFiles/edit_cache.dir
+/home/emerson/github/compilers/homework/emerson/build/CMakeFiles/rebuild_cache.dir
+/home/emerson/github/compilers/homework/emerson/build/CMakeFiles/bool.dir
