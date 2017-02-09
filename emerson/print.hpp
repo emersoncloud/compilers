@@ -17,6 +17,9 @@ bool needs_parens(Expr* e) {
         void visit(Not_expr*e) { 
             r = true; 
         }
+        void visit(Xor_expr*e) { 
+            r = true; 
+        }
     };
     V vis;
     e->accept(vis);
@@ -57,6 +60,11 @@ void print(Expr* e) {
         void visit(Not_expr* e) {
             std::cout << '!';
             print_enclosed(e->e1);
+        }
+        void visit(Xor_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << '^';
+            print_enclosed(e->e2);
         }
     };
     V vis;

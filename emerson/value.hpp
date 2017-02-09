@@ -4,12 +4,12 @@
 
 enum Value_kind {
   int_val,
-  real_val,
+  bool_val,
 };
 
 union Value_data {
   int n;
-  double d;
+  bool b;
 };
 
 // Discriminated union or variant.

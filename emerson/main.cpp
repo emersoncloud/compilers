@@ -7,9 +7,9 @@
 int main() {
     Context ctx;
     {
-        Expr * e = new Or_expr(new Not_expr(new Bool_expr(true)) , new Bool_expr(false));
+        Expr * e = new Or_expr(new Not_expr(new Bool_expr(false)) , new Bool_expr(false));
         print(e);
-        std::cout << " == " << eval(e) << '\n';
+        std::cout << " == " << eval(e).data.b << '\n';
     }
 
 }
