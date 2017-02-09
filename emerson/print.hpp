@@ -20,6 +20,16 @@ bool needs_parens(Expr* e) {
         void visit(Xor_expr*e) { 
             r = true; 
         }
+        void visit(Int_expr* e) {
+            r = false;
+        }
+        void visit(Add_expr*e) {
+            r = true;
+        }   
+        void visit(Sub_expr*e) {
+            r = true;
+        }
+ 
     };
     V vis;
     e->accept(vis);
@@ -47,6 +57,10 @@ void print(Expr* e) {
                 std::cout << "false";
         }
 
+        void visit(Int_expr* e) {
+            std::cout << e->val;
+        }
+
         void visit(And_expr* e) {
             print_enclosed(e->e1);
             std::cout << " & ";
@@ -64,6 +78,16 @@ void print(Expr* e) {
         void visit(Xor_expr* e) {
             print_enclosed(e->e1);
             std::cout << '^';
+            print_enclosed(e->e2);
+        }
+        void visit(Add_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << '+';
+            print_enclosed(e->e2);
+        }
+        void visit(Sub_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << '-';
             print_enclosed(e->e2);
         }
     };

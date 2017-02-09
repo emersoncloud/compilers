@@ -48,9 +48,9 @@ struct Expr::Visitor {
     virtual void visit(Or_expr*) = 0;
     virtual void visit(Not_expr*) = 0;
     virtual void visit(Xor_expr*) = 0;
-    //virtual void visit(Int_expr*) = 0;
-    //virtual void visit(Add_expr*) = 0;
-    //virtual void visit(Sub_expr*) = 0;
+    virtual void visit(Int_expr*) = 0;
+    virtual void visit(Add_expr*) = 0;
+    virtual void visit(Sub_expr*) = 0;
     //virtual void visit(Mul_expr*) = 0;
     //virtual void visit(Div_expr*) = 0;
     //virtual void visit(Mod_expr*) = 0;
@@ -65,13 +65,13 @@ struct Bool_expr : Expr {
     }
 };
 
-//struct Int_expr : Expr {
-//    int val;
-//    Int_expr(int i) : val(i) {}
-//    void accept(Visitor& v) {
-//        return v.visit(this);
-//    }
-//};
+struct Int_expr : Expr {
+    int val;
+    Int_expr(int i) : val(i) {}
+    void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
 
 struct And_expr : Expr {
     Expr* e1;
@@ -111,24 +111,24 @@ struct Xor_expr : Expr {
     }
 };
 
-//struct Add_expr : Expr {
-//    Expr* e1;
-//    Expr* e2;
-//    Add_expr(Expr* e1, Expr* e2)
-//        :e1(e1), e2(e2) {}
-//    void accept(Visitor& v) {
-//        return v.visit(this);
-//    }
-//};
-//struct Sub_expr : Expr {
-//    Expr* e1;
-//    Expr* e2;
-//    Sub_expr(Expr* e1, Expr* e2)
-//        :e1(e1), e2(e2) {}
-//    void accept(Visitor& v) {
-//        return v.visit(this);
-//    }
-//};
+struct Add_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Add_expr(Expr* e1, Expr* e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
+struct Sub_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Sub_expr(Expr* e1, Expr* e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
 //
 //struct Mul_expr : Expr {
 //    Expr* e1;
