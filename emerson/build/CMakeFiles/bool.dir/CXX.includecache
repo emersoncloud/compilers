@@ -15,6 +15,8 @@ ast.hpp
 /home/emerson/github/compilers/emerson/ast.hpp
 value.hpp
 /home/emerson/github/compilers/emerson/value.hpp
+newtype.hpp
+/home/emerson/github/compilers/emerson/newtype.hpp
 
 /home/emerson/github/compilers/emerson/main.cpp
 iostream
@@ -25,6 +27,12 @@ eval.hpp
 /home/emerson/github/compilers/emerson/eval.hpp
 print.hpp
 /home/emerson/github/compilers/emerson/print.hpp
+
+/home/emerson/github/compilers/emerson/newtype.hpp
+iostream
+-
+ast.hpp
+/home/emerson/github/compilers/emerson/ast.hpp
 
 /home/emerson/github/compilers/emerson/print.hpp
 ast.hpp

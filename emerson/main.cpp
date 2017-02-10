@@ -11,9 +11,13 @@ int main() {
         print(e);
         std::cout << " == " << eval(e).data.b << '\n';
 
-        Expr * en = new Mul_expr(new Int_expr(2), new Int_expr(3));
+        Expr * en = new Mod_expr(new Int_expr(4), new Int_expr(3));
         print(en);
         std::cout << " == " << eval(en).data.n << '\n';
+
+        Expr * en2 = new Mul_expr(new Int_expr(3), new Neg_expr(new Int_expr(3)));
+        print(en2);
+        std::cout << " == " << eval(en2).data.b << '\n';
     }
 
 }

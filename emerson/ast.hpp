@@ -19,6 +19,10 @@ struct Mul_expr;
 struct Div_expr;
 struct Mod_expr;
 struct Neg_expr;
+struct Les_expr;
+struct Gre_expr;
+struct LOE_expr;
+struct GOE_expr;
 
 struct Cond_expr; //conditional statement
 
@@ -38,6 +42,7 @@ struct Int_type : Type { };
 
 struct Expr {
     struct Visitor;
+    Type *ty = nullptr;
     virtual ~Expr() = default;
     virtual void accept(Visitor&) = 0;
 };
@@ -55,6 +60,14 @@ struct Expr::Visitor {
     virtual void visit(Div_expr*) = 0;
     virtual void visit(Mod_expr*) = 0;
     virtual void visit(Neg_expr*) = 0;
+    //Less than expression
+    virtual void visit(Les_expr*) = 0;
+    //Greater than expression
+    virtual void visit(Gre_expr*) = 0;
+    //Less than or equal to
+    virtual void visit(LOE_expr*) = 0;
+    //Greater than or equal to
+    virtual void visit(GOE_expr*) = 0;
 };                     
 
 struct Bool_expr : Expr {
@@ -165,6 +178,43 @@ struct Neg_expr : Expr {
     Neg_expr(Expr* e1)
         :e1(e1) {}
     void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
+
+struct Les_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Les_expr(Expr*e1, Expr *e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v){
+        return v.visit(this);
+    }
+};
+struct Gre_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Gre_expr(Expr*e1, Expr *e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v){
+        return v.visit(this);
+    }
+};
+struct LOE_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    LOE_expr(Expr*e1, Expr *e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v){
+        return v.visit(this);
+    }
+};
+struct GOE_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    GOE_expr(Expr*e1, Expr *e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v){
         return v.visit(this);
     }
 };

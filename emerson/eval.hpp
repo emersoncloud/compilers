@@ -1,5 +1,6 @@
 #include "ast.hpp"
 #include "value.hpp"
+#include "newtype.hpp"
 
 Value eval(Expr* e) {
     struct V: Expr::Visitor {
@@ -56,6 +57,22 @@ Value eval(Expr* e) {
         void visit(Neg_expr* e) {
             r.kind = Value_kind::int_val;
             r.data.n = 0 - eval(e->e1).data.n;
+        }
+        void visit(Les_expr *e) {
+            r.kind = Value_kind::bool_val;
+            r.data.b = eval(e->e1).data.n < eval(e->e2).data.n;
+        }
+        void visit(Gre_expr *e) {
+            r.kind = Value_kind::bool_val;
+            r.data.b = eval(e->e1).data.n > eval(e->e2).data.n;
+        }
+        void visit(LOE_expr *e) {
+            r.kind = Value_kind::bool_val;
+            r.data.b = eval(e->e1).data.n <= eval(e->e2).data.n;
+        }
+        void visit(GOE_expr *e) {
+            r.kind = Value_kind::bool_val;
+            r.data.b = eval(e->e1).data.n >= eval(e->e2).data.n;
         }
     };
     V vis;

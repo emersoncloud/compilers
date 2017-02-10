@@ -41,6 +41,18 @@ bool needs_parens(Expr* e) {
         void visit(Neg_expr*e) {
             r = true;
         }
+        void visit(Les_expr*e) {
+            r = true;
+        }
+        void visit(Gre_expr*e) {
+            r = true;
+        }
+        void visit(LOE_expr*e) {
+            r = true;
+        }
+        void visit(GOE_expr*e) {
+            r = true;
+        }
     };
 
     V vis;
@@ -119,6 +131,26 @@ void print(Expr* e) {
         void visit(Neg_expr*e ) {
             std::cout << '-';
             print_enclosed(e->e1);
+        }
+        void visit(Les_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << '<';
+            print_enclosed(e->e2);
+        }
+        void visit(Gre_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << '>';
+            print_enclosed(e->e2);
+        }
+        void visit(LOE_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << "<=";
+            print_enclosed(e->e2);
+        }
+        void visit(GOE_expr* e) {
+            print_enclosed(e->e1);
+            std::cout << ">=";
+            print_enclosed(e->e2);
         }
     };
     V vis;
