@@ -1,14 +1,24 @@
 #Emerson Cloud
 --------------
 #Compiler Design - Homework 1
-
 ###Internal language respresentation for a small expression language 
+
+##Overview
 This language has functionalily to represent basic data types and operations on those data
 types through expressions. These expressions and types allow for the language to evaluate 
 complex expressions. THe expressions are stored in an abstract syntax tree or AST. Through the visitor
 pattern we can perform operations on the expressions defined by the AST. The opperations defined in 
 this language are print, evaluate, and type check.
 
+#How to run
+1. Clone repository
+2. mkdir build
+3. cd build
+4. cmake ..
+5. make
+6. ./bool
+
+#Implementation
 The language has two kinds of types; integers and boolean values, and are defined in `ast.hpp`.
 
 The language also defines expressions which are built on top of these two basic types, and are also 
