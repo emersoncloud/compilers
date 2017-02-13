@@ -1,10 +1,12 @@
 #include "ast.hpp"
 #include "value.hpp"
 #include "newtype.hpp"
+#include <cassert>
 
 Value eval(Expr* e) {
     struct V: Expr::Visitor {
         Value r;
+        Context cxt;
         void visit(Bool_expr* e) { 
             r.kind = Value_kind::bool_val;
             r.data.b = e->val; 
@@ -14,6 +16,7 @@ Value eval(Expr* e) {
             r.data.n = e->val;
         }
         void visit(And_expr* e) { 
+            check(cxt, e);
             r.kind = Value_kind::bool_val;
             r.data.b = eval(e->e1).data.b & eval(e->e2).data.b; 
         }
@@ -74,6 +77,14 @@ Value eval(Expr* e) {
             r.kind = Value_kind::bool_val;
             r.data.b = eval(e->e1).data.n >= eval(e->e2).data.n;
         }
+        //void visit(Cond_expr *e) {
+            //r. kind = Value_kind::bool_val;
+            //r.data.b = eval(e->e1) | eval(e->e2) | eval(e->e3);
+            //r.data.b = eval(e->e1); 
+            //if (r.data.b == false) {
+            //    r.data.b = eval(e->e2);
+            //}
+            //else
     };
     V vis;
     e->accept(vis);
