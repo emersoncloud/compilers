@@ -16,12 +16,8 @@ Type* check(Context& cxt, Expr* e) {
         }
 
         void visit(And_expr* e) {
-            if(check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type) {
-                r = &cxt.bool_type;
-            }
-            else  {
-                std::cout << "BADD NEWS!";
-            }
+            assert(check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type);
+            r = &cxt.bool_type;
         }
         void visit(Or_expr* e) {
             if(check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type) {
@@ -90,6 +86,28 @@ Type* check(Context& cxt, Expr* e) {
         void visit(GOE_expr* e) {
             if(check(cxt, e->e1) == &cxt.int_type && check(cxt, e->e2) == &cxt.int_type) {
                 r = &cxt.bool_type;
+            }
+        }
+        void visit(Eq_expr* e) {
+            if(check(cxt, e->e1) == &cxt.int_type && check(cxt, e->e2) == &cxt.int_type) {
+                r = &cxt.bool_type;
+            }
+            else if(check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type) {
+                r = &cxt.bool_type;
+            }
+            else{
+                std::cout << "Baddddd egg here!";
+            }
+        }
+        void visit(Neq_expr* e) {
+            if(check(cxt, e->e1) == &cxt.int_type && check(cxt, e->e2) == &cxt.int_type) {
+                r = &cxt.bool_type;
+            }
+            else if(check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type) {
+                r = &cxt.bool_type;
+            }
+            else{
+                std::cout << "Baddddd egg here!";
             }
         }
 

@@ -22,6 +22,8 @@ struct Les_expr;
 struct Gre_expr;
 struct LOE_expr;
 struct GOE_expr;
+struct Eq_expr;
+struct Neq_expr;
 
 struct Cond_expr; //conditional statement
 
@@ -67,6 +69,11 @@ struct Expr::Visitor {
     virtual void visit(LOE_expr*) = 0;
     //Greater than or equal to
     virtual void visit(GOE_expr*) = 0;
+
+    //Equality
+    virtual void visit(Eq_expr*) = 0;
+    //Ineqyality
+    virtual void visit(Neq_expr*) = 0;
 };                     
 
 struct Bool_expr : Expr {
@@ -218,6 +225,25 @@ struct GOE_expr : Expr {
     }
 };
 
+struct Eq_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Eq_expr(Expr*e1, Expr *e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v){
+        return v.visit(this);
+    }
+};
+
+struct Neq_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Neq_expr(Expr*e1, Expr *e2)
+        :e1(e1), e2(e2) {}
+    void accept(Visitor& v){
+        return v.visit(this);
+    }
+};
 //struct Cond_expr : Expr {
 //    Expr* e1;
 //    Expr* e2;
