@@ -13,7 +13,7 @@ int main() {
         print(e1);
         std::cout << " == " << eval(e1).data.b << '\n';
 
-        Expr * e2 = new And_expr(new Bool_expr(true) , new Bool_expr(false));
+        Expr * e2 = new And_expr(new Bool_expr(5) , new Bool_expr(false));
         check(ctx, e2);
         print(e2);
         std::cout << " == " << eval(e2).data.b << '\n';

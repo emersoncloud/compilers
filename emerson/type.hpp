@@ -1,4 +1,5 @@
 #include <iostream>
+#include <typeinfo>
 #include "ast.hpp"
 #include "value.hpp"
 
@@ -11,9 +12,11 @@ Type* check(Context& cxt, Expr* e) {
         V(Context& c) : cxt(c) { }
 
         void visit(Bool_expr* e) {
+            assert(typeid(e->val) == typeid(bool));
             r = &cxt.bool_type;
         }
         void visit(Int_expr* e) {
+            assert(typeid(e->val) == typeid(int));
             r = &cxt.int_type;
         }
         void visit(And_expr* e) {
@@ -30,6 +33,11 @@ Type* check(Context& cxt, Expr* e) {
         }
         void visit(Xor_expr* e) {
             assert(check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type);
+            r = &cxt.bool_type;
+        }
+        void visit(Cond_expr* e) {
+            assert(check(cxt, e->e1) == &cxt.bool_type); 
+            assert(check(cxt, e->e2) == check(cxt, e->e3));
             r = &cxt.bool_type;
         }
         void visit(Add_expr* e) {
@@ -80,11 +88,6 @@ Type* check(Context& cxt, Expr* e) {
         void visit(Neq_expr* e) {
             assert(check(cxt, e->e1) == &cxt.int_type && check(cxt, e->e2) == &cxt.int_type || 
                     check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type);
-            r = &cxt.bool_type;
-        }
-        void visit(Cond_expr* e) {
-            assert(check(cxt, e->e1) == &cxt.bool_type); 
-            assert(check(cxt, e->e2) == check(cxt, e->e3));
             r = &cxt.bool_type;
         }
 

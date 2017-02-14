@@ -55,6 +55,11 @@ struct Expr {
     virtual void accept(Visitor&) = 0;
 };
 
+struct Context {
+    Bool_type bool_type;
+    Int_type int_type;
+};
+
 //Definition of Expression Visitor class
 struct Expr::Visitor {
     virtual void visit(Bool_expr*) = 0;
@@ -255,20 +260,6 @@ struct Neq_expr : Expr {
     void accept(Visitor& v){
         return v.visit(this);
     }
-};
-//struct Cond_expr : Expr {
-//    Expr* e1;
-//    Expr* e2;
-//    Cond_expr(Expr* e1, Expr* e2)
-//        :e1(e1), e2(e2) {}
-//    void accept(Visitor& v) {
-//        return v.visit(this);
-//    }
-//};
-
-struct Context {
-    Bool_type bool_type;
-    Int_type int_type;
 };
 
 #endif

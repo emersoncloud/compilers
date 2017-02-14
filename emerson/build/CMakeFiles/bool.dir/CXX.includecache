@@ -41,6 +41,8 @@ iostream
 /home/emerson/github/compilers/emerson/type.hpp
 iostream
 -
+typeinfo
+-
 ast.hpp
 /home/emerson/github/compilers/emerson/ast.hpp
 value.hpp

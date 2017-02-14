@@ -114,6 +114,15 @@ void print(Expr* e) {
             std::cout << '^';
             print_enclosed(e->e2);
         }
+        void visit(Cond_expr* e) {
+            std::cout << "if: (";
+            print_enclosed(e->e1);
+            std::cout << ") then: (";
+            print_enclosed(e->e2);
+            std::cout << ") else: (";
+            print_enclosed(e->e3);
+            std::cout << ")";
+        }
         void visit(Add_expr* e) {
             print_enclosed(e->e1);
             std::cout << '+';
@@ -172,15 +181,6 @@ void print(Expr* e) {
             print_enclosed(e->e1);
             std::cout << "!=";
             print_enclosed(e->e2);
-        }
-        void visit(Cond_expr* e) {
-            std::cout << "if: (";
-            print_enclosed(e->e1);
-            std::cout << ") then: (";
-            print_enclosed(e->e2);
-            std::cout << ") else: (";
-            print_enclosed(e->e3);
-            std::cout << ")";
         }
     };
     V vis;
