@@ -27,22 +27,22 @@ eval.hpp
 /home/emerson/github/compilers/emerson/eval.hpp
 print.hpp
 /home/emerson/github/compilers/emerson/print.hpp
-newtype.hpp
-/home/emerson/github/compilers/emerson/newtype.hpp
-
-/home/emerson/github/compilers/emerson/newtype.hpp
-iostream
--
-ast.hpp
-/home/emerson/github/compilers/emerson/ast.hpp
-value.hpp
-/home/emerson/github/compilers/emerson/value.hpp
+type.hpp
+/home/emerson/github/compilers/emerson/type.hpp
 
 /home/emerson/github/compilers/emerson/print.hpp
 ast.hpp
 /home/emerson/github/compilers/emerson/ast.hpp
 iostream
 -
+
+/home/emerson/github/compilers/emerson/type.hpp
+iostream
+-
+ast.hpp
+/home/emerson/github/compilers/emerson/ast.hpp
+value.hpp
+/home/emerson/github/compilers/emerson/value.hpp
 
 /home/emerson/github/compilers/emerson/value.hpp
 

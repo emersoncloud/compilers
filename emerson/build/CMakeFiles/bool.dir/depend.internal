@@ -5,6 +5,6 @@ CMakeFiles/bool.dir/main.cpp.o
  /home/emerson/github/compilers/emerson/ast.hpp
  /home/emerson/github/compilers/emerson/eval.hpp
  /home/emerson/github/compilers/emerson/main.cpp
- /home/emerson/github/compilers/emerson/newtype.hpp
  /home/emerson/github/compilers/emerson/print.hpp
+ /home/emerson/github/compilers/emerson/type.hpp
  /home/emerson/github/compilers/emerson/value.hpp

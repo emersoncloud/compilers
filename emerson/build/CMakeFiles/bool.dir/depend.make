@@ -4,7 +4,7 @@
 CMakeFiles/bool.dir/main.cpp.o: ../ast.hpp
 CMakeFiles/bool.dir/main.cpp.o: ../eval.hpp
 CMakeFiles/bool.dir/main.cpp.o: ../main.cpp
-CMakeFiles/bool.dir/main.cpp.o: ../newtype.hpp
 CMakeFiles/bool.dir/main.cpp.o: ../print.hpp
+CMakeFiles/bool.dir/main.cpp.o: ../type.hpp
 CMakeFiles/bool.dir/main.cpp.o: ../value.hpp
 

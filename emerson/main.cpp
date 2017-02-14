@@ -3,12 +3,12 @@
 #include "ast.hpp"
 #include "eval.hpp"
 #include "print.hpp"
-#include "newtype.hpp"
+#include "type.hpp"
 
 int main() {
     Context ctx;
     {
-        Expr * e = new And_expr(new Not_expr(new Int_expr(true)) , new Bool_expr(false));
+        Expr * e = new And_expr(new Not_expr(new Bool_expr(true)) , new Bool_expr(false));
         check(ctx, e);
         print(e);
         std::cout << " == " << eval(e).data.b << '\n';
@@ -23,7 +23,7 @@ int main() {
         print(en2);
         std::cout << " == " << eval(en2).data.b << '\n';
 
-        Expr * enp = new Neq_expr(new Int_expr(3), new Neg_expr(new Int_expr(3)));
+        Expr * enp = new Neq_expr(new Bool_expr(3), new Bool_expr(3));
         check(ctx, enp);
         print(enp);
         std::cout << " == " << eval(enp).data.b << '\n';
