@@ -4,15 +4,14 @@
 ###Internal language respresentation for a small expression language 
 
 #Overview
-This language has functionalily to represent basic data types and operations on those data
-types through expressions. These expressions and types allow for the language to evaluate 
-complex expressions. The expressions are stored in an abstract syntax tree or AST. Through 
+This language has functionalily to represent basic data types and expressions built from these basic
+data types. The expressions are stored in an abstract syntax tree or AST. Through 
 the visitor
-pattern we can perform operations on the expressions defined by the AST. The opperations 
+pattern we can perform operations on the expressions defined by the AST. The operations 
 defined in this language are print, evaluate, and type check.
 
 The visitor pattern was used to ensure seperation of concerns between the definition of 
-the types and expressions and the algorithms that operate on these objects.
+the types and expressions and the algorithms that operate on types and expressions.
 
 #How to run
 1. Clone repository
