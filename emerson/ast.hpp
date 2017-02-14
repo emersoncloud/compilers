@@ -2,15 +2,19 @@
 #define AST_HPP
 #include <cassert>
 
+//Two types defined in language
 struct Bool_type;
 struct Int_type;
 
+//Boolean expressions
 struct Bool_expr;
 struct And_expr;
 struct Or_expr;
 struct Not_expr;
 struct Xor_expr;
+struct Cond_expr;
 
+//Integer expressions
 struct Int_expr;
 struct Add_expr;
 struct Sub_expr;
@@ -22,16 +26,17 @@ struct Les_expr;
 struct Gre_expr;
 struct LOE_expr;
 struct GOE_expr;
+
+//General expressions
 struct Eq_expr;
 struct Neq_expr;
-
-struct Cond_expr; //conditional statement
 
 enum struct TYPE {
     Int_type,
     Bool_type,
 };
 
+//Base Type class
 struct Type {
     struct Visitor;
     virtual ~Type() = default;
@@ -41,6 +46,7 @@ struct Type {
 struct Bool_type : Type { };
 struct Int_type : Type { };
 
+//Base Expression class
 struct Expr {
     struct Visitor;
     Type *ty = nullptr;
@@ -48,6 +54,7 @@ struct Expr {
     virtual void accept(Visitor&) = 0;
 };
 
+//Definition of Expression Visitor class
 struct Expr::Visitor {
     virtual void visit(Bool_expr*) = 0;
     virtual void visit(And_expr*) = 0;
@@ -61,18 +68,11 @@ struct Expr::Visitor {
     virtual void visit(Div_expr*) = 0;
     virtual void visit(Mod_expr*) = 0;
     virtual void visit(Neg_expr*) = 0;
-    //Less than expression
     virtual void visit(Les_expr*) = 0;
-    //Greater than expression
     virtual void visit(Gre_expr*) = 0;
-    //Less than or equal to
     virtual void visit(LOE_expr*) = 0;
-    //Greater than or equal to
     virtual void visit(GOE_expr*) = 0;
-
-    //Equality
     virtual void visit(Eq_expr*) = 0;
-    //Ineqyality
     virtual void visit(Neq_expr*) = 0;
 };                     
 

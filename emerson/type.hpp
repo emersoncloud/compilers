@@ -2,12 +2,11 @@
 #include "ast.hpp"
 #include "value.hpp"
 
+//Function to check if an expression is valid
 Type* check(Context& cxt, Expr* e) {
     struct V : Expr::Visitor {
         Context& cxt;
         Type* r;
-        //Bool_type bool_type;
-        //Int_type int_type;
 
         V(Context& c) : cxt(c) { }
 

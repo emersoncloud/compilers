@@ -1,7 +1,8 @@
 #include "ast.hpp"
-
 #include <iostream>
 
+//Visitor function to determine if an expression needs parenthesis
+//during printing
 bool needs_parens(Expr* e) {
     struct V : Expr::Visitor {
         bool r;
@@ -66,6 +67,7 @@ bool needs_parens(Expr* e) {
     return vis.r;
 }
 
+//Print function that prints the expression
 void print(Expr* e) {
     struct V: Expr::Visitor {
         void print_enclosed(Expr* e) {
@@ -172,4 +174,3 @@ void print(Expr* e) {
     V vis;
     e->accept(vis); 
 }
-

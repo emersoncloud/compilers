@@ -6,9 +6,10 @@
 #Overview
 This language has functionalily to represent basic data types and operations on those data
 types through expressions. These expressions and types allow for the language to evaluate 
-complex expressions. The expressions are stored in an abstract syntax tree or AST. Through the visitor
-pattern we can perform operations on the expressions defined by the AST. The opperations defined in 
-this language are print, evaluate, and type check.
+complex expressions. The expressions are stored in an abstract syntax tree or AST. Through 
+the visitor
+pattern we can perform operations on the expressions defined by the AST. The opperations 
+defined in this language are print, evaluate, and type check.
 
 #How to run
 1. Clone repository
@@ -35,4 +36,20 @@ The `Expr::Visitor` defines all of the pure virtual visitor fucntions that must 
 the derived classes. These functions take as arguments all of the kinds of expressions defined
 in the language. This allows the visitor to call the correct function by type.
 
+To evaluate an expression the `eval` function is called, which is defined in
+`eval.hpp`. `eval` takes an expression and returns a value. The function defines 
+a struct V which inherits from `Expr::Visitor`. 
+The `struct V` has a `Value` object as defined in `value.hpp`. This object has
+both a kind and a data object. `Value` can hold an integer type or a bool type object. 
+`Value` also has visit functions for each data type. The visit function takes an
+expression pointer and assigns the type and evaluates the expression.
+
+The `print` function as defined in `print.hpp` has a very similiar structure to `eval`
+with a different output. Instead of returning a value print outputs the expression 
+in a human readable format. The first componenet of `print.hpp` is a function to 
+determine whether or not the expression should be printed with parenthesis. Secondly
+the `print` function prints the expression.
+
+Finally `check` defined in `type.hpp` checks an expression to ensure proper typing 
+before the expression is evaluated.
 
