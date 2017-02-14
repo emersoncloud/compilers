@@ -11,6 +11,9 @@ the visitor
 pattern we can perform operations on the expressions defined by the AST. The opperations 
 defined in this language are print, evaluate, and type check.
 
+The visitor pattern was used to ensure seperation of concerns between the definition of 
+the types and expressions and the algorithms that operate on these objects.
+
 #How to run
 1. Clone repository
 2. mkdir build

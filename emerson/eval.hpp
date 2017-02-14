@@ -31,27 +31,42 @@ Value eval(Expr* e) {
             r.data.b = eval(e->e1).data.b ^ eval(e->e2).data.b;
         }
         void visit(Add_expr* e) {
+            double result = eval(e->e1).data.n + eval(e->e2).data.n;
+            assert(result < LONG_MAX); 
+            assert(result > LONG_MIN); 
             r.kind = Value_kind::int_val;
-            r.data.n = eval(e->e1).data.n + eval(e->e2).data.n;
+            r.data.n = result;
         }
         void visit(Sub_expr* e) {
+            double result = eval(e->e1).data.n - eval(e->e2).data.n;
+            assert(result < LONG_MAX); 
+            assert(result > LONG_MIN); 
             r.kind = Value_kind::int_val;
-            r.data.n = eval(e->e1).data.n - eval(e->e2).data.n;
+            r.data.n = result;
         }
 
         void visit(Mul_expr* e) {
+            double result = eval(e->e1).data.n * eval(e->e2).data.n;
+            assert(result < LONG_MAX); 
+            assert(result > LONG_MIN); 
             r.kind = Value_kind::int_val;
-            r.data.n = eval(e->e1).data.n * eval(e->e2).data.n;
+            r.data.n = result;
         }
 
         void visit(Div_expr* e) {
+            double result = eval(e->e1).data.n / eval(e->e2).data.n;
+            assert(result < LONG_MAX); 
+            assert(result > LONG_MIN); 
             r.kind = Value_kind::int_val;
-            r.data.n = eval(e->e1).data.n / eval(e->e2).data.n;
+            r.data.n = result;
         }
 
         void visit(Mod_expr* e) {
+            double result = eval(e->e1).data.n % eval(e->e2).data.n;
+            assert(result < LONG_MAX); 
+            assert(result > LONG_MIN); 
             r.kind = Value_kind::int_val;
-            r.data.n = eval(e->e1).data.n % eval(e->e2).data.n;
+            r.data.n = result;
         }
 
         void visit(Neg_expr* e) {
