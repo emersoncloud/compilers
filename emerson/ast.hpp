@@ -31,6 +31,7 @@ struct GOE_expr;
 struct Eq_expr;
 struct Neq_expr;
 
+
 enum struct TYPE {
     Int_type,
     Bool_type,
@@ -74,6 +75,7 @@ struct Expr::Visitor {
     virtual void visit(GOE_expr*) = 0;
     virtual void visit(Eq_expr*) = 0;
     virtual void visit(Neq_expr*) = 0;
+    virtual void visit(Cond_expr*) = 0;
 };                     
 
 struct Bool_expr : Expr {
@@ -125,6 +127,16 @@ struct Xor_expr : Expr {
     Expr* e2;
     Xor_expr(Expr* e1, Expr* e2)
         :e1(e1), e2(e2) {}
+    void accept(Visitor& v) {
+        return v.visit(this);
+    }
+};
+struct Cond_expr : Expr {
+    Expr* e1;
+    Expr* e2;
+    Expr* e3;
+    Cond_expr(Expr* e1, Expr* e2, Expr* e3)
+        :e1(e1), e2(e2), e3(e3) {}
     void accept(Visitor& v) {
         return v.visit(this);
     }

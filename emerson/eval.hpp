@@ -1,6 +1,7 @@
 #include "ast.hpp"
 #include "value.hpp"
 #include <cassert>
+#include <climits>
 
 Value eval(Expr* e) {
     struct V: Expr::Visitor {
@@ -32,7 +33,6 @@ Value eval(Expr* e) {
         void visit(Add_expr* e) {
             r.kind = Value_kind::int_val;
             r.data.n = eval(e->e1).data.n + eval(e->e2).data.n;
-
         }
         void visit(Sub_expr* e) {
             r.kind = Value_kind::int_val;
@@ -82,14 +82,15 @@ Value eval(Expr* e) {
             r.kind = Value_kind::bool_val;
             r.data.b = eval(e->e1).data.n != eval(e->e2).data.n;
         }
-        //void visit(Cond_expr *e) {
-            //r. kind = Value_kind::bool_val;
-            //r.data.b = eval(e->e1) | eval(e->e2) | eval(e->e3);
-            //r.data.b = eval(e->e1); 
-            //if (r.data.b == false) {
-            //    r.data.b = eval(e->e2);
-            //}
-            //else
+        void visit(Cond_expr *e) {
+            if(eval(e->e1).data.b) {
+                r.data.b = eval(e->e2).data.b;
+            }
+            else {
+                r.data.b = eval(e->e3).data.b;
+            }
+            r.kind = Value_kind::bool_val;
+        }
     };
     V vis;
     e->accept(vis);

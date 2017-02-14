@@ -82,6 +82,11 @@ Type* check(Context& cxt, Expr* e) {
                     check(cxt, e->e1) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type);
             r = &cxt.bool_type;
         }
+        void visit(Cond_expr* e) {
+            assert(check(cxt, e->e2) == &cxt.bool_type && check(cxt, e->e2) == &cxt.bool_type &&
+                    check(cxt, e->e3) == &cxt.bool_type);
+            r = &cxt.bool_type;
+        }
 
     };
     V vis(cxt);
