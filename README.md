@@ -1,5 +1,4 @@
 #Emerson Cloud
---------------
 #Compiler Design - Homework 1
 ###Internal language representation for a small expression language 
 
