@@ -5,20 +5,20 @@
 #include <iostream>
 
 enum Token_kind {
-    EOF_tok,
-    Plus_tok,
-    Minus_tok,
+    EOF_tok, //0
+    Plus_tok, //1
+    Minus_tok, //2
     Mul_tok,
     Div_tok,
-    Mod_tok,
+    Mod_tok, //5
     Amp_tok,
     Or_tok,
     Not_tok,
     Eq_tok,
-    Neq_tok,
+    Neq_tok, //10
     Lt_tok,
-    Gt_tok,
-    LtEq_tok,
+    Gt_tok,  //12
+    LtEq_tok, //13
     GtEq_tok,
     Qu_tok,
     Colon_tok,
@@ -52,6 +52,18 @@ struct Lexer {
     int n;
 
     std::string buf;
+    std::string contents;
+
+    Lexer() {
+        n = 0;
+        buf = "";
+        contents = "";
+        const char* first = nullptr;
+        const char* last = nullptr;
+    }
+
+    Lexer(std::string c)
+        :contents(c) {}
 
     bool eof() const {
         return first == last;

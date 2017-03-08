@@ -16,18 +16,45 @@ using namespace std;
 //
 
 int main() {
-
     string response;
     getline(cin, response);
 
-
-    //lex(response);
-
     cout << "got it: " << response << "\n";
 
-    Token tok = Token(Plus_tok, 0);
-    cout << "hows this work?: " << tok.kind << " : " << tok.attribute << "\n";
+    Token *tok =  new Token(Int_tok, 0);
 
+    //cout << "hows this work?: " << tok.kind << " : " << tok.attribute << "\n";
+
+    Lexer lex = Lexer();
+    char c = ' ';
+
+    lex.first = &response[0];
+
+    cout << "Lex.first: " << lex.first << "\n";
+    cout << "Buffer: " << lex.buf << "\n";
+    cout << "Char c: " << c << "\n";
+
+    //lex.consume();
+
+    cout << "Buffer: " << lex.buf << "\n";
+
+    c = lex.lookahead();
+    cout << "Lex.first: " << lex.first << "\n";
+    cout << "Buffer: " << lex.buf << "\n";
+    cout << "Char c: " << c << "\n";
+
+
+    cout << "\n\n";
+    tok = lex.next();
+    cout << "Lex.first: " << lex.first << "\n";
+    cout << "Buffer: " << lex.buf << "\n";
+    cout << "Token kind: " << tok->kind << "attribute: " << tok->attribute << "\n";
+
+    cout << "\n\n";
+    tok = lex.next();
+    cout << "Lex.first: " << lex.first << "\n";
+    cout << "Buffer: " << lex.buf << "\n";
+    cout << "Token kind: " << tok->kind << "attribute: " << tok->attribute << "\n";
     // cin a line and feed it to the lexer
     // perform lexical analysis on each line
     // Empty lines should be ignored
