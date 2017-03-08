@@ -6,9 +6,25 @@
 
 #IncludeRegexTransform: 
 
+/home/emerson/github/compilers/calculator/ast.hpp
+cassert
+-
+
+/home/emerson/github/compilers/calculator/lex.hpp
+ast.hpp
+/home/emerson/github/compilers/calculator/ast.hpp
+string
+-
+iostream
+-
+
 /home/emerson/github/compilers/calculator/lexmain.cpp
 iostream
 -
 string
 -
+ast.hpp
+/home/emerson/github/compilers/calculator/ast.hpp
+lex.hpp
+/home/emerson/github/compilers/calculator/lex.hpp
 

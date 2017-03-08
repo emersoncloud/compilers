@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include "ast.hpp"
+#include "lex.hpp"
 using namespace std;
 
 // Each expression simplifies into either an integer-literal or a boolean-literal
@@ -19,9 +20,13 @@ int main() {
     string response;
     getline(cin, response);
 
+
     //lex(response);
 
-    cout << "got it: " << response;
+    cout << "got it: " << response << "\n";
+
+    Token tok = Token(Plus_tok, 0);
+    cout << "hows this work?: " << tok.kind << " : " << tok.attribute << "\n";
 
     // cin a line and feed it to the lexer
     // perform lexical analysis on each line
