@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <string>
-#include <lex.cpp>
+#include "ast.hpp"
 using namespace std;
 
 // Each expression simplifies into either an integer-literal or a boolean-literal
@@ -21,7 +21,7 @@ int main() {
 
     //lex(response);
 
-    cout << "got it baby: " << response;
+    cout << "got it: " << response;
 
     // cin a line and feed it to the lexer
     // perform lexical analysis on each line
