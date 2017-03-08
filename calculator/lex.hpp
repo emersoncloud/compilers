@@ -34,7 +34,7 @@ struct Token {
     Token(Token_kind k, int a)
         :kind(k), attribute(a) {}
     //attribute
-    virtual ~Token();
+    virtual ~Token() = default;
 };
 
 struct Int_token : Token {
