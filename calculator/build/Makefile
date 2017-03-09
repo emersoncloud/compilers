@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/emerson/github/compilers/calculator/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named bool
+# Target rules for targets named calc
 
 # Build rule for target.
-bool: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bool
-.PHONY : bool
+calc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 calc
+.PHONY : calc
 
 # fast build rule for target.
-bool/fast:
-	$(MAKE) -f CMakeFiles/bool.dir/build.make CMakeFiles/bool.dir/build
-.PHONY : bool/fast
+calc/fast:
+	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/build
+.PHONY : calc/fast
 
 lexmain.o: lexmain.cpp.o
 
@@ -129,7 +129,7 @@ lexmain.o: lexmain.cpp.o
 
 # target to build an object file
 lexmain.cpp.o:
-	$(MAKE) -f CMakeFiles/bool.dir/build.make CMakeFiles/bool.dir/lexmain.cpp.o
+	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/lexmain.cpp.o
 .PHONY : lexmain.cpp.o
 
 lexmain.i: lexmain.cpp.i
@@ -138,7 +138,7 @@ lexmain.i: lexmain.cpp.i
 
 # target to preprocess a source file
 lexmain.cpp.i:
-	$(MAKE) -f CMakeFiles/bool.dir/build.make CMakeFiles/bool.dir/lexmain.cpp.i
+	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/lexmain.cpp.i
 .PHONY : lexmain.cpp.i
 
 lexmain.s: lexmain.cpp.s
@@ -147,7 +147,7 @@ lexmain.s: lexmain.cpp.s
 
 # target to generate assembly for a file
 lexmain.cpp.s:
-	$(MAKE) -f CMakeFiles/bool.dir/build.make CMakeFiles/bool.dir/lexmain.cpp.s
+	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/lexmain.cpp.s
 .PHONY : lexmain.cpp.s
 
 # Help Target
@@ -156,9 +156,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... bool"
+	@echo "... edit_cache"
+	@echo "... calc"
 	@echo "... lexmain.o"
 	@echo "... lexmain.i"
 	@echo "... lexmain.s"

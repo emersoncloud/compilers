@@ -60,7 +60,6 @@ struct Lexer {
     }
 
     bool eof() {
-        bool teest = first == last;
         return first == last;
     }
 
@@ -69,7 +68,13 @@ struct Lexer {
     }
 
     void consume() {
-        buf += *first++;
+        if (!eof()) {
+            buf += *first++;
+        }
+        else {
+            buf += *first++;
+        }
+
     }
 
     void comments() {

@@ -1,5 +1,7 @@
-#Emerson Cloud - Compiler Design - Homework 2
-###Internal representation for a small expression language - Application in a Calculator
+#Emerson Cloud - Compiler Design 
+#Homework 2
+###Internal representation for a small expression language 
+###Application in a Calculator
 
 #Overview
 The addition for Homework 2 is the addition of lexical analysis. Lexical analysis is the 
