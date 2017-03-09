@@ -16,16 +16,21 @@ enum Token_kind {
     GtEq_tok, Qu_tok,
     Colon_tok, LeftParen_tok,
     RightParen_tok, Int_tok,
-    Bool_tok,
+    Bool_tok, Comm_tok,
+    BitLeft_tok, BitRight_tok,
+    Xor_tok, Comp_tok,
 };
 
 struct Token {
     int kind;
-    int attribute;
+    std::string attribute;
     Token() {}
     Token(Token_kind k, int a)
-        :kind(k), attribute(a) {}
+        :kind(k), attribute(std::to_string(a)) {}
+    Token(Token_kind k, std::string str)
+        :kind(k), attribute(str) {}
     virtual ~Token() = default;
+
 };
 
 struct Int_token : Token {
@@ -46,7 +51,7 @@ struct Lexer {
         n = 0;
         buf = "";
         const char* first = nullptr;
-        //const char* last = nullptr;
+        const char* last = nullptr;
     }
 
     Lexer(std::string str) {
@@ -67,27 +72,39 @@ struct Lexer {
         buf += *first++;
     }
 
+    void comments() {
+        while (first != last) {
+            consume();
+        }
+    }
+
     Token *next();
 };
 
 
 Token *Lexer::next() {
     Token *tok;
+    std::string temp;
+    if (lookahead() == '#') {
+        comments();
+        temp = buf; 
+        buf = "";
+        return new Token(Comm_tok, temp);
+    }
     if (lookahead() == ' ') {
-        std::cout << "we hit the if statement" << "\n";
         consume();
     }
-    // std::cout << "lookahead: " << lookahead() << "\n";
-    // std::cout << "buffer: " << buf << "\n";
     switch (lookahead()) {
-        //case ' ': consume();
-        //          buf = "";
-        //          return;
         case '<': consume();
                   if (lookahead() == '=') {
                       consume();
                       buf = "";
                       return new Token(LtEq_tok, 0);
+                  }
+                  if (lookahead() == '<') {
+                      consume();
+                      buf = "";
+                      return new Token(BitLeft_tok, 0);
                   }
                   buf = "";
                   return new Token(Lt_tok, 0);
@@ -96,6 +113,11 @@ Token *Lexer::next() {
                       consume();
                       buf = "";
                       return new Token(GtEq_tok, 0);
+                  }
+                  if (lookahead() == '>') {
+                      consume();
+                      buf = "";
+                      return new Token(BitRight_tok, 0);
                   }
                   buf = "";
                   return new Token(Gt_tok, 0);
@@ -149,6 +171,9 @@ Token *Lexer::next() {
         case '(': consume();
                   buf = "";
                   return new Token(RightParen_tok, 0);
+        case '^': consume();
+                  buf = "";
+                  return new Token(Xor_tok, 0);
         case 't':consume();
                  if (lookahead() == 'r') {
                      consume();
@@ -190,10 +215,10 @@ Token *Lexer::next() {
                         consume();
                   }
                   n = std::stoi(buf);
-                  tok = new Token(Int_tok, n);
+                  tok = new Token(Int_tok, buf);
                   buf = "";
                   return tok;
-        default: return new Token(Bool_tok, 1234);
+        default: return new Token(Bool_tok, "Default");
     }
 };
 #endif

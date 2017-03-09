@@ -1,7 +1,5 @@
-#Emerson Cloud
-#Compiler Design - Homework 2
-###Internal language representation for a small expression language
-###Application in a Calculator
+#Emerson Cloud - Compiler Design - Homework 2
+###Internal representation for a small expression language - Application in a Calculator
 
 #Overview
 The addition for Homework 2 is the addition of lexical analysis. Lexical analysis is the 
@@ -14,8 +12,8 @@ The lexer matches tokens to input lexemes, each with a name and attribute.
 The lexer was implemented with 19 valid tokens in mind. Each token is described in the 
 `Token_kind` enumeration. The token objects to be returned to the parser of the compiler are defined
 in the struct 'Token'. `Token` defines an integer that corresponds to the `kind` of the token
-enumerated in the enum `Token_kind`. `Token` also includes an optional attribute, `attribute` which
-is an integer for simplicity. This integer represents the values help by integer tokens. There are two
+enumerated in the enum `Token_kind`. `Token` also includes an optional attribute, which a string
+simplicity. This integer represents the values help by integer tokens. There are two
 constructors, a default and another that accepts a `Token_kind` and integer attribute.
 
 In addition there is a struct `Lexer` that defines a lexer object. This object contains: a character
@@ -26,7 +24,9 @@ the next character to the buffer and increments the first pointer, and finally `
 the `lookahead()`, `consume()` pattern until a token is returned. 
 
 The `next()` function contains a switch statement to switch on each of the valid characters of the
-language in order to make the proper token for that element.
+language in order to make the proper token for that element. `next()` has the added benefit of ignoring
+white-space inputted from the calculator. In addition `next()` ignores comments by calling `comments()`
+until the end of the line.
 
 ##Calculator
 The front end to the lexer and testing is contained in `lexmain.cpp`. Here input is taken in 
