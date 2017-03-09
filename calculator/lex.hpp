@@ -97,7 +97,10 @@ Token *Lexer::next() {
         return new Token(Comm_tok, temp);
     }
     if (lookahead() == ' ') {
-        consume();
+        if(!eof()) {
+            consume();
+            buf = "";
+        }
     }
     switch (lookahead()) {
         case '<': consume();
