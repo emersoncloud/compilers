@@ -87,8 +87,8 @@ struct Lexer {
 Token *Lexer::next() {
     Token *tok;
     std::string temp;
-    std::cout << "lookahead::"<<lookahead() << "\n";
-    std::cout << "first::"<<first<< "\n";
+    //std::cout << "lookahead::"<<lookahead() << "\n";
+    //std::cout << "first::"<<first<< "\n";
 
     if (lookahead() == '#') {
         comments();
