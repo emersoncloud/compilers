@@ -23,10 +23,13 @@ int main() {
             if (tok->kind != 25) {
                 toks.push_back(tok);
             }
+            if(lex.done == 1) break;
         }
 
-        tok = lex.next();
-        toks.push_back(tok);
+        if (lex.done != 1) {
+            tok = lex.next();
+            toks.push_back(tok);
+        }
     }
     
     for(int i = 0; i < toks.size(); i++) {

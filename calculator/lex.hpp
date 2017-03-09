@@ -45,6 +45,7 @@ struct Lexer {
     const char* first;
     const char* last;
     int n;
+    bool done;
     std::string buf;
 
     Lexer() {
@@ -57,6 +58,7 @@ struct Lexer {
     Lexer(std::string str) {
             first = &str[0];
             last = &str[str.length()-1];
+            done = false;
     }
 
     bool eof() {
@@ -68,13 +70,8 @@ struct Lexer {
     }
 
     void consume() {
-        if (!eof()) {
+            done = eof();
             buf += *first++;
-        }
-        else {
-            buf += *first++;
-        }
-
     }
 
     void comments() {
@@ -90,6 +87,8 @@ struct Lexer {
 Token *Lexer::next() {
     Token *tok;
     std::string temp;
+    std::cout << "lookahead::"<<lookahead() << "\n";
+    std::cout << "first::"<<first<< "\n";
 
     if (lookahead() == '#') {
         comments();
@@ -97,93 +96,97 @@ Token *Lexer::next() {
         buf = "";
         return new Token(Comm_tok, temp);
     }
+    if (eof()) {
+        buf = "";
+        return new Token(EOF_tok, "");
+    }
     switch (lookahead()) {
         case ' ': consume();
                   buf = "";
-                  return new Token(Space_tok, 0);
+                  return new Token(Space_tok, "");
         case '?': consume();
                   buf = "";
-                  return new Token(Qu_tok, 0);
+                  return new Token(Qu_tok, "");
         case ':': consume();
                   buf = "";
-                  return new Token(Colon_tok, 0);
+                  return new Token(Colon_tok, "");
         case '<': consume();
                   if (lookahead() == '=') {
                       consume();
                       buf = "";
-                      return new Token(LtEq_tok, 0);
+                      return new Token(LtEq_tok, "");
                   }
                   if (lookahead() == '<') {
                       consume();
                       buf = "";
-                      return new Token(BitLeft_tok, 0);
+                      return new Token(BitLeft_tok, "");
                   }
                   buf = "";
-                  return new Token(Lt_tok, 0);
+                  return new Token(Lt_tok, "");
         case '>': consume();
                   if (lookahead() == '='){
                       consume();
                       buf = "";
-                      return new Token(GtEq_tok, 0);
+                      return new Token(GtEq_tok, "");
                   }
                   if (lookahead() == '>') {
                       consume();
                       buf = "";
-                      return new Token(BitRight_tok, 0);
+                      return new Token(BitRight_tok, "");
                   }
                   buf = "";
-                  return new Token(Gt_tok, 0);
+                  return new Token(Gt_tok, "");
         case '+': consume();
                       buf = "";
-                  return new Token(Plus_tok, 0);
+                  return new Token(Plus_tok, "");
         case '-': consume();
                       buf = "";
-                  return new Token(Minus_tok, 0);
+                  return new Token(Minus_tok, "");
         case '*': consume();
                       buf = "";
-                  return new Token(Mul_tok, 0);
+                  return new Token(Mul_tok, "");
         case '/': consume();
                       buf = "";
-                  return new Token(Div_tok, 0);
+                  return new Token(Div_tok, "");
         case '%': consume();
                       buf = "";
-                  return new Token(Mod_tok, 0);
+                  return new Token(Mod_tok, "");
         case '&': consume();
                   if (lookahead() == '&') {
                       consume();
                       buf = "";
-                      return new Token(Amp_tok, 0);
+                      return new Token(Amp_tok, "");
                   }
         case '|': consume();
                   if(lookahead() == '|') {
                       consume();
                       buf = "";
-                      return new Token(Or_tok, 0);
+                      return new Token(Or_tok, "");
                   } 
         case '=': consume();
                   if (lookahead() == '='){
                       consume();
                       buf = "";
-                      return new Token(Eq_tok, 0);
+                      return new Token(Eq_tok, "");
                   } 
         case '!': consume();
                   if (lookahead() == '='){
                       consume();
                       buf = "";
-                      return new Token(Neq_tok, 0);
+                      return new Token(Neq_tok, "");
                   } else {
                       buf = "";
-                      return new Token(Not_tok, 0);
+                      return new Token(Not_tok, "");
                   }
         case ')': consume();
                   buf = "";
-                  return new Token(LeftParen_tok, 0);
+                  return new Token(LeftParen_tok, "");
         case '(': consume();
                   buf = "";
-                  return new Token(RightParen_tok, 0);
+                  return new Token(RightParen_tok, "");
         case '^': consume();
                   buf = "";
-                  return new Token(Xor_tok, 0);
+                  return new Token(Xor_tok, "");
         case 't':consume();
                  if (lookahead() == 'r') {
                      consume();
