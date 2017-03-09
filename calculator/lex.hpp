@@ -18,7 +18,7 @@ enum Token_kind {
     RightParen_tok, Int_tok,
     Bool_tok, Comm_tok,
     BitLeft_tok, BitRight_tok,
-    Xor_tok, Comp_tok,
+    Xor_tok, Space_tok,
 };
 
 struct Token {
@@ -90,19 +90,23 @@ struct Lexer {
 Token *Lexer::next() {
     Token *tok;
     std::string temp;
+
     if (lookahead() == '#') {
         comments();
         temp = buf; 
         buf = "";
         return new Token(Comm_tok, temp);
     }
-    if (lookahead() == ' ') {
-        if(!eof()) {
-            consume();
-            buf = "";
-        }
-    }
     switch (lookahead()) {
+        case ' ': consume();
+                  buf = "";
+                  return new Token(Space_tok, 0);
+        case '?': consume();
+                  buf = "";
+                  return new Token(Qu_tok, 0);
+        case ':': consume();
+                  buf = "";
+                  return new Token(Colon_tok, 0);
         case '<': consume();
                   if (lookahead() == '=') {
                       consume();
@@ -149,8 +153,6 @@ Token *Lexer::next() {
                       consume();
                       buf = "";
                       return new Token(Amp_tok, 0);
-                  } else {
-                      std::cout << "ERRRORORORO!";
                   }
         case '|': consume();
                   if(lookahead() == '|') {
