@@ -13,6 +13,8 @@ cassert
 /home/emerson/github/compilers/calculator/lex.hpp
 ast.hpp
 /home/emerson/github/compilers/calculator/ast.hpp
+cassert
+-
 string
 -
 iostream
@@ -27,4 +29,6 @@ ast.hpp
 /home/emerson/github/compilers/calculator/ast.hpp
 lex.hpp
 /home/emerson/github/compilers/calculator/lex.hpp
+vector
+-
 

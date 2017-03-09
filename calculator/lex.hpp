@@ -1,39 +1,30 @@
 #ifndef LEX_HPP
 #define LEX_HPP
 #include "ast.hpp"
+#include <cassert>
 #include <string>
 #include <iostream>
 
 enum Token_kind {
-    EOF_tok, //0
-    Plus_tok, //1
-    Minus_tok, //2
-    Mul_tok,
-    Div_tok,
-    Mod_tok, //5
-    Amp_tok,
-    Or_tok,
-    Not_tok,
-    Eq_tok,
-    Neq_tok, //10
-    Lt_tok,
-    Gt_tok,  //12
-    LtEq_tok, //13
-    GtEq_tok,
-    Qu_tok,
-    Colon_tok,
-    LeftParen_tok,
-    RightParen_tok,
-    Int_tok,
+    EOF_tok, Plus_tok, 
+    Minus_tok, Mul_tok,
+    Div_tok, Mod_tok, 
+    Amp_tok, Or_tok,
+    Not_tok, Eq_tok,
+    Neq_tok, Lt_tok,
+    Gt_tok,  LtEq_tok, 
+    GtEq_tok, Qu_tok,
+    Colon_tok, LeftParen_tok,
+    RightParen_tok, Int_tok,
     Bool_tok,
 };
 
 struct Token {
     int kind;
     int attribute;
+    Token() {}
     Token(Token_kind k, int a)
         :kind(k), attribute(a) {}
-    //attribute
     virtual ~Token() = default;
 };
 
@@ -48,43 +39,44 @@ struct Bool_token : Token {
 struct Lexer {
     const char* first;
     const char* last;
-
     int n;
-
     std::string buf;
-    std::string contents;
 
     Lexer() {
         n = 0;
         buf = "";
-        contents = "";
         const char* first = nullptr;
-        const char* last = nullptr;
+        //const char* last = nullptr;
     }
 
-    Lexer(std::string c)
-        :contents(c) {}
+    Lexer(std::string str) {
+            first = &str[0];
+            last = &str[str.length()-1];
+    }
 
-    bool eof() const {
+    bool eof() {
+        bool teest = first == last;
+        //std::cout << teest;
+        //std::cout << "someone is using this!";
         return first == last;
     }
 
-    // depending on what lookahead i shwe can go into different switch statements
     char lookahead() const {
-        if (eof()) {
-            return 0;
-        } else {
+        //if (eof()) {
+        //    assert("donezo!");
+        //    return 0;
+        //} 
+        //else {
             return *first;
-        }
+        //}
     }
 
-    //The last funciton we really need
     void consume() {
-        if(eof()) {
-            std::cout <<"oh oops we are at the end!";
-        }
+        //if(eof()) {
+        //    std::cout <<"oh oops we are at the end!";
+        //}
         buf += *first++;
-        //return buf.back();
+        std::cout << "HEREs the buffer:" << buf << "\n";
     }
 
     Token *next();
@@ -92,129 +84,103 @@ struct Lexer {
 
 
 Token *Lexer::next() {
-    //ignore-space();
+    if (lookahead() == ' ') {
+        std::cout << "we hit the if statement" << "\n";
+        consume();
+    }
     switch (lookahead()) {
+        //case ' ': consume();
+        //          buf = "";
+        //          return;
         case '<': consume();
                   if (lookahead() == '=') {
                       consume();
+                      buf = "";
                       return new Token(LtEq_tok, 0);
                   }
+                  buf = "";
                   return new Token(Lt_tok, 0);
-
         case '>': consume();
                   if (lookahead() == '='){
                       consume();
+                      buf = "";
                       return new Token(GtEq_tok, 0);
                   }
+                  buf = "";
                   return new Token(Gt_tok, 0);
         case '+': consume();
+                      buf = "";
                   return new Token(Plus_tok, 0);
         case '-': consume();
+                      buf = "";
                   return new Token(Minus_tok, 0);
         case '*': consume();
+                      buf = "";
                   return new Token(Mul_tok, 0);
         case '/': consume();
+                      buf = "";
                   return new Token(Div_tok, 0);
         case '%': consume();
+                      buf = "";
                   return new Token(Mod_tok, 0);
         case '&': consume();
                   if (lookahead() == '&') {
                       consume();
+                      buf = "";
                       return new Token(Amp_tok, 0);
                   } else {
                       std::cout << "ERRRORORORO!";
-                      //call error
                   }
         case '|': consume();
                   if(lookahead() == '|') {
                       consume();
+                      buf = "";
                       return new Token(Or_tok, 0);
-                  } else {
-                      std::cout << "ERRRORORORO!";
-                  //    throw an error;
-                  }
+                  } 
+                  // else {
+                  //     std::cout << "ERRRORORORO!";
+                  // }
         case '=': consume();
                   if (lookahead() == '='){
                       consume();
+                      buf = "";
                       return new Token(Eq_tok, 0);
-                  } else {
-                      std::cout << "ERRRORORORO!";
-                  //    throw an error
-                  }
+                  } 
+                  //else {
+                  //    std::cout << "ERRRORORORO!";
+                  //}
         case '!': consume();
                   if (lookahead() == '='){
                       consume();
+                      buf = "";
                       return new Token(Neq_tok, 0);
                   } else {
+                      buf = "";
                       return new Token(Not_tok, 0);
                   }
         case ')': consume();
+                  buf = "";
                   return new Token(LeftParen_tok, 0);
         case '(': consume();
+                  buf = "";
                   return new Token(RightParen_tok, 0);
-        case '0': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        case '1': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        case '2': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        case '3': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        case '4': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        case '5': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        case '6': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        case '7': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        case '8': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
         case '9': consume();
-                       while(!eof() && std::isdigit(lookahead())) {
-                           consume();
-                       }
-                       n = std::stoi(buf);
-                       return new Token(Int_tok, n);
-        //case '0': consume();
-        //case '1': consume();
-        //case '9': consume();
+                  while(std::isdigit(lookahead())) {
+                        consume();
+                  }
+                  n = std::stoi(buf);
+                  Token *tok = new Token(Int_tok, n);
+                  buf = "";
+                  return tok;
     }
 };
 #endif
