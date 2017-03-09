@@ -13,11 +13,11 @@ int main() {
     while (true) {
         string input;
         getline(cin, input);    
+        if (input == "")
+            break;
         Lexer lex = Lexer(input);
 
         do {
-            //cout << "running" << "\n";
-            //cout << "first" << lex.first << "last" << lex.last <<"\n";
             tok = lex.next();
             toks.push_back(tok);
         } while(lex.first != lex.last);

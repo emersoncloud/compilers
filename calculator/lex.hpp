@@ -56,27 +56,15 @@ struct Lexer {
 
     bool eof() {
         bool teest = first == last;
-        //std::cout << teest;
-        //std::cout << "someone is using this!";
         return first == last;
     }
 
     char lookahead() const {
-        //if (eof()) {
-        //    assert("donezo!");
-        //    return 0;
-        //} 
-        //else {
-            return *first;
-        //}
+        return *first;
     }
 
     void consume() {
-        //if(eof()) {
-        //    std::cout <<"oh oops we are at the end!";
-        //}
         buf += *first++;
-        std::cout << "HEREs the buffer:" << buf << "\n";
     }
 
     Token *next();
@@ -84,10 +72,13 @@ struct Lexer {
 
 
 Token *Lexer::next() {
+    Token *tok;
     if (lookahead() == ' ') {
         std::cout << "we hit the if statement" << "\n";
         consume();
     }
+    // std::cout << "lookahead: " << lookahead() << "\n";
+    // std::cout << "buffer: " << buf << "\n";
     switch (lookahead()) {
         //case ' ': consume();
         //          buf = "";
@@ -137,18 +128,12 @@ Token *Lexer::next() {
                       buf = "";
                       return new Token(Or_tok, 0);
                   } 
-                  // else {
-                  //     std::cout << "ERRRORORORO!";
-                  // }
         case '=': consume();
                   if (lookahead() == '='){
                       consume();
                       buf = "";
                       return new Token(Eq_tok, 0);
                   } 
-                  //else {
-                  //    std::cout << "ERRRORORORO!";
-                  //}
         case '!': consume();
                   if (lookahead() == '='){
                       consume();
@@ -164,6 +149,33 @@ Token *Lexer::next() {
         case '(': consume();
                   buf = "";
                   return new Token(RightParen_tok, 0);
+        case 't':consume();
+                 if (lookahead() == 'r') {
+                     consume();
+                     if (lookahead() == 'u') {
+                         consume();
+                         if (lookahead() == 'e') {
+                             consume();
+                             buf = "";
+                             return new Token(Bool_tok, 1);
+                         }
+                     }
+                 }
+        case 'f': consume();
+                  if (lookahead() == 'a') {
+                      consume();
+                    if (lookahead() == 'l') {
+                        consume();
+                        if (lookahead() == 's') {
+                            consume();
+                            if (lookahead() == 'e') {
+                                consume();
+                                buf = "";
+                                return new Token(Bool_tok, 0);
+                            }
+                        }
+                    }
+                  }
         case '0':
         case '1':
         case '2':
@@ -178,9 +190,10 @@ Token *Lexer::next() {
                         consume();
                   }
                   n = std::stoi(buf);
-                  Token *tok = new Token(Int_tok, n);
+                  tok = new Token(Int_tok, n);
                   buf = "";
                   return tok;
+        default: return new Token(Bool_tok, 1234);
     }
 };
 #endif
