@@ -1,6 +1,6 @@
 #Emerson Cloud
 #Compiler Design - Homework 1
-###Internal language representation for a small expression language 
+###Internal language representation for a small expression language
 
 #Overview
 This language has functionality to represent basic data types and expressions built from these basic
