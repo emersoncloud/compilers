@@ -3,21 +3,18 @@
 #include <deque>
 #include <vector>
 
-struct stmt;
-struct decl;
-struct type;
-struct expr;
-
 struct Parser {
 
     std::deque<Token*> tokens;
 
+    // Constructor that takes a vector of tokens
     Parser(vector<Token*> toks) {
         for (int i = 0; i < toks.size(); i++) {
             tokens.push_back(toks[i]);
         }
     }
 
+    // Helper Functions that are used within the class
     bool eof() {
         return toks.empty();
     }
@@ -49,7 +46,7 @@ struct Parser {
         if (lookahead() == k) 
             return consume();
         else {
-            throw std::runtime_error("Invalid math statement");
+            throw std::runtime_error("Invalid match statement");
         }
     }
 
@@ -61,6 +58,8 @@ struct Parser {
             return nullptr;
         }
     }
+
+    // END helper functions
 
     void parse() {
         // parse the dang thing!
@@ -81,11 +80,19 @@ struct Parser {
     Expr* get_expression() {
         //only define expression statements for now
         return expression_statement();
-        //switch (lookahead()) {
+
+        // With switch on lookahead we can determine if the next token is a
+        // declaration token. And then create a new variable based on that
+        // information
+        // switch (lookahead()) { ... }
     }
 
     Expr* expression_statement() {
+
+        // Pull out an expression
         Expr* e = expression();
+
+        // Then match a semicolon to know the expression is finished
         match(semicolon_tok);
         return e;
     }
