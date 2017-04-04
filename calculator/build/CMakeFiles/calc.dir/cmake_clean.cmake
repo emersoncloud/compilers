@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/calc.dir/lexmain.cpp.o"
+  "CMakeFiles/calc.dir/parsemain.cpp.o"
   "calc.pdb"
   "calc"
 )

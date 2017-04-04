@@ -20,7 +20,7 @@ string
 iostream
 -
 
-/home/emerson/github/compilers/calculator/lexmain.cpp
+/home/emerson/github/compilers/calculator/parsemain.cpp
 iostream
 -
 string

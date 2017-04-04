@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/emerson/github/compilers/calculator/lexmain.cpp" "/home/emerson/github/compilers/calculator/build/CMakeFiles/calc.dir/lexmain.cpp.o"
+  "/home/emerson/github/compilers/calculator/parsemain.cpp" "/home/emerson/github/compilers/calculator/build/CMakeFiles/calc.dir/parsemain.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -123,32 +123,32 @@ calc/fast:
 	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/build
 .PHONY : calc/fast
 
-lexmain.o: lexmain.cpp.o
+parsemain.o: parsemain.cpp.o
 
-.PHONY : lexmain.o
+.PHONY : parsemain.o
 
 # target to build an object file
-lexmain.cpp.o:
-	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/lexmain.cpp.o
-.PHONY : lexmain.cpp.o
+parsemain.cpp.o:
+	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/parsemain.cpp.o
+.PHONY : parsemain.cpp.o
 
-lexmain.i: lexmain.cpp.i
+parsemain.i: parsemain.cpp.i
 
-.PHONY : lexmain.i
+.PHONY : parsemain.i
 
 # target to preprocess a source file
-lexmain.cpp.i:
-	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/lexmain.cpp.i
-.PHONY : lexmain.cpp.i
+parsemain.cpp.i:
+	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/parsemain.cpp.i
+.PHONY : parsemain.cpp.i
 
-lexmain.s: lexmain.cpp.s
+parsemain.s: parsemain.cpp.s
 
-.PHONY : lexmain.s
+.PHONY : parsemain.s
 
 # target to generate assembly for a file
-lexmain.cpp.s:
-	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/lexmain.cpp.s
-.PHONY : lexmain.cpp.s
+parsemain.cpp.s:
+	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/parsemain.cpp.s
+.PHONY : parsemain.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... calc"
-	@echo "... lexmain.o"
-	@echo "... lexmain.i"
-	@echo "... lexmain.s"
+	@echo "... parsemain.o"
+	@echo "... parsemain.i"
+	@echo "... parsemain.s"
 .PHONY : help
 
 

@@ -57,38 +57,38 @@ include CMakeFiles/calc.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/calc.dir/flags.make
 
-CMakeFiles/calc.dir/lexmain.cpp.o: CMakeFiles/calc.dir/flags.make
-CMakeFiles/calc.dir/lexmain.cpp.o: ../lexmain.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/emerson/github/compilers/calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/calc.dir/lexmain.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calc.dir/lexmain.cpp.o -c /home/emerson/github/compilers/calculator/lexmain.cpp
+CMakeFiles/calc.dir/parsemain.cpp.o: CMakeFiles/calc.dir/flags.make
+CMakeFiles/calc.dir/parsemain.cpp.o: ../parsemain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/emerson/github/compilers/calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/calc.dir/parsemain.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/calc.dir/parsemain.cpp.o -c /home/emerson/github/compilers/calculator/parsemain.cpp
 
-CMakeFiles/calc.dir/lexmain.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/calc.dir/lexmain.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/emerson/github/compilers/calculator/lexmain.cpp > CMakeFiles/calc.dir/lexmain.cpp.i
+CMakeFiles/calc.dir/parsemain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/calc.dir/parsemain.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/emerson/github/compilers/calculator/parsemain.cpp > CMakeFiles/calc.dir/parsemain.cpp.i
 
-CMakeFiles/calc.dir/lexmain.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/calc.dir/lexmain.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/emerson/github/compilers/calculator/lexmain.cpp -o CMakeFiles/calc.dir/lexmain.cpp.s
+CMakeFiles/calc.dir/parsemain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/calc.dir/parsemain.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/emerson/github/compilers/calculator/parsemain.cpp -o CMakeFiles/calc.dir/parsemain.cpp.s
 
-CMakeFiles/calc.dir/lexmain.cpp.o.requires:
+CMakeFiles/calc.dir/parsemain.cpp.o.requires:
 
-.PHONY : CMakeFiles/calc.dir/lexmain.cpp.o.requires
+.PHONY : CMakeFiles/calc.dir/parsemain.cpp.o.requires
 
-CMakeFiles/calc.dir/lexmain.cpp.o.provides: CMakeFiles/calc.dir/lexmain.cpp.o.requires
-	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/lexmain.cpp.o.provides.build
-.PHONY : CMakeFiles/calc.dir/lexmain.cpp.o.provides
+CMakeFiles/calc.dir/parsemain.cpp.o.provides: CMakeFiles/calc.dir/parsemain.cpp.o.requires
+	$(MAKE) -f CMakeFiles/calc.dir/build.make CMakeFiles/calc.dir/parsemain.cpp.o.provides.build
+.PHONY : CMakeFiles/calc.dir/parsemain.cpp.o.provides
 
-CMakeFiles/calc.dir/lexmain.cpp.o.provides.build: CMakeFiles/calc.dir/lexmain.cpp.o
+CMakeFiles/calc.dir/parsemain.cpp.o.provides.build: CMakeFiles/calc.dir/parsemain.cpp.o
 
 
 # Object files for target calc
 calc_OBJECTS = \
-"CMakeFiles/calc.dir/lexmain.cpp.o"
+"CMakeFiles/calc.dir/parsemain.cpp.o"
 
 # External object files for target calc
 calc_EXTERNAL_OBJECTS =
 
-calc: CMakeFiles/calc.dir/lexmain.cpp.o
+calc: CMakeFiles/calc.dir/parsemain.cpp.o
 calc: CMakeFiles/calc.dir/build.make
 calc: CMakeFiles/calc.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/emerson/github/compilers/calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable calc"
@@ -99,7 +99,7 @@ CMakeFiles/calc.dir/build: calc
 
 .PHONY : CMakeFiles/calc.dir/build
 
-CMakeFiles/calc.dir/requires: CMakeFiles/calc.dir/lexmain.cpp.o.requires
+CMakeFiles/calc.dir/requires: CMakeFiles/calc.dir/parsemain.cpp.o.requires
 
 .PHONY : CMakeFiles/calc.dir/requires
 
