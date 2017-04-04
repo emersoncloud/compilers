@@ -1,4 +1,4 @@
-#include "lexer.hpp"
+#include "lex.hpp"
 
 #include <deque>
 #include <vector>
@@ -8,7 +8,7 @@ struct Parser {
     std::deque<Token*> tokens;
 
     // Constructor that takes a vector of tokens
-    Parser(vector<Token*> toks) {
+    Parser(std::vector<Token*> toks) {
         for (int i = 0; i < toks.size(); i++) {
             tokens.push_back(toks[i]);
         }
@@ -16,12 +16,12 @@ struct Parser {
 
     // Helper Functions that are used within the class
     bool eof() {
-        return toks.empty();
+        return tokens.empty();
     }
 
     Token* peek() {
-        if(!toks.empty())
-            return toks.front();
+        if(!tokens.empty())
+            return tokens.front();
         else
             return nullptr;
     }
@@ -36,8 +36,8 @@ struct Parser {
     Token* consume() {
         assert(!eof());
 
-        Token* tok = toks.front();
-        toks.pop_front();
+        Token* tok = tokens.front();
+        tokens.pop_front();
 
         return tok;
     }
@@ -188,5 +188,5 @@ struct Parser {
     }
 
 
-}
+};
 

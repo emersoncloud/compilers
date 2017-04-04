@@ -3,6 +3,7 @@
 #include <string>
 #include "ast.hpp"
 #include "lex.hpp"
+#include "parser.hpp"
 #include <vector>
 using namespace std;
 

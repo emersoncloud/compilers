@@ -29,6 +29,16 @@ ast.hpp
 /home/emerson/github/compilers/calculator/ast.hpp
 lex.hpp
 /home/emerson/github/compilers/calculator/lex.hpp
+parser.hpp
+/home/emerson/github/compilers/calculator/parser.hpp
+vector
+-
+
+/home/emerson/github/compilers/calculator/parser.hpp
+lex.hpp
+/home/emerson/github/compilers/calculator/lex.hpp
+deque
+-
 vector
 -
 

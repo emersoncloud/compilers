@@ -4,4 +4,5 @@
 CMakeFiles/calc.dir/parsemain.cpp.o: ../ast.hpp
 CMakeFiles/calc.dir/parsemain.cpp.o: ../lex.hpp
 CMakeFiles/calc.dir/parsemain.cpp.o: ../parsemain.cpp
+CMakeFiles/calc.dir/parsemain.cpp.o: ../parser.hpp
 
