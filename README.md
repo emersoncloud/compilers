@@ -37,9 +37,6 @@ to hold all of the expression sequences pulled out of the tokens, and returns no
 When the expression sequence is created the function `expression_seq`
 is called. This creates a new expression as long as there are tokens still in the token vector.
 
-// Get expression might check for the two different kinds of expression we want to look for
-// declarative and expression expressions
-
 When a new expression is created, the function expression() is called and followed by a call
 to the match function to make sure the character following the expression is a semi-colon.
 
