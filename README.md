@@ -1,58 +1,75 @@
-#Emerson Cloud
-#Compiler Design - Homework 1
-###Internal language representation for a small expression language
+#Emerson Cloud - Compiler Design 
+#Homework 2
+###Internal representation for a small expression language 
+###Application in a Calculator
 
 #Overview
-This language has functionality to represent basic data types and expressions built from these basic
-data types. The expressions are stored in an abstract syntax tree or AST. Through 
-the visitor
-pattern we can perform operations on the expressions defined by the AST. The operations 
-defined in this language are print, evaluate, and type check.
+The added component for Homework 3 is the parser. The parser is what connects the front end
+of our compiler, to the backend. The parser accepts tokens from lexical analysis and constructs
+abstract syntax trees (AST). To accomplish this task the parser proceeds through the series
+of tokens, one by one, and switches through different cases to construct different
+expressions.
 
-The visitor pattern was used to ensure separation of concerns between the definition of 
-the types and expressions and the algorithms that operate on types and expressions.
+#Implementation
+##Lexer
+The parser should consider two main cases of parsing, a declaration expression eg. `var int
+x = 5` as well as expression statements eg. `y + 10`. Each statement is a complete set of
+expressions and is capped with a semi-colon. This statment becomes its own AST to be
+evaluated during the backend portion of our compiler. 
+
+The Parser is defined in parser.hpp. The Parser in this context is an object with a member
+variable as the sequence of tokens from the lexer. It has one constructor that takes a 
+sequence of tokens and sets its member vector to contain each of those tokens. Then follow
+several helper functions to be used by other functions in this class. `peek(), lookahead(), 
+consume(), match() and match_if()` are all examples of these helper funcitons. Most
+of these functions are parallels of the ones found in the lexer. This is because the lexing
+of characters to create tokens is a very similiar process to parsing those tokens into 
+statements. 
+
+One of the most used functions, `match_if(token_kind k)` has a special behavior. This function only consumes
+a new token if it matches the type of token passed to the function. This allows one to create
+if else statements that only get caught if the next token is the token you are looking for.
+
+The entry point into the parser is through a function `parse()`. This function creates a vector
+to hold all of the expression sequences pulled out of the tokens, and does not return anything
+to the calling function. When the expression sequence is created the function `expression_seq`
+is called. This creates a new expression as long as there are tokens still in the token vector.
+
+// Get expression might check for the two different kinds of expression we want to look for
+// declarative and expression expressions
+
+When a new expression is created, the function expression() is called and followed by a call
+to the match function to make sure the character following the expression is a semi-colon.
+
+Then we follow down the calls of different expressoin functions. Each of these functions
+attempts to match the next character to what it needs to create that type of expression.
+For example the multiplicative_expression() tries to match the next token with a Mul_tok
+or a Div_tok or a Remainder Tok (* or / or %). Else it breaks out of the matching while loop
+and the function. 
+
+The `primary_expression()` function matches the next token to one of the primary expressions
+such as true, false, or an integer. These represent the base expressions all of the other
+expressions are built from. 
+
+Finally the resulting expression is returned to the expression sequence to be evaluated and 
+manipulated by the backend of our compiler. 
+
+
+##Calculator
+The front end to the lexer and testing is contained in `parsemain.cpp`. Here input is taken in 
+line by line and then put through the lexer and the tokens created are outputted. 
+A while loop reads in each line from `std::cin` and creates a `Lexer` object with the line.
+Then in a `while` loop the tokens are created from the `lexer.next()` function and appended
+to a `toks` vector for holding.
+
+Then the tokens from the vector are fed into the parser which creates the ASTs from the
+vector of tokens.
 
 #How to run
 1. Clone repository
-2. mkdir build
-3. cd build
-4. cmake ..
-5. make
-6. ./bool
-
-#Implementation
-The language has two kinds of types; integers and boolean values, and are defined in `ast.hpp`.
-
-The language also defines expressions which are built on top of these two basic types, and are also 
-defined in `ast.hpp`.
-
-The base `Type` class holds a visitor struct `Visitor` and a single member function `virtual
-void accept(Visitor&) {}` that accepts a visitor object by reference to perform various operations. 
-Both `Bool_type` and `Int_type` inherit from `Type`. 
-
-The base `Expr` class has the same members as the `Type` base class but includes a `Type *ty` to 
-hold the type of the expression to be used for type checking.
-
-The `Expr::Visitor` defines all of the pure virtual visitor functions that must be overridden by
-the derived classes. These functions take as arguments all of the kinds of expressions defined
-in the language. This allows the visitor to call the correct function by type.
-
-To evaluate an expression the `eval` function is called, which is defined in
-`eval.hpp`. `eval` takes an expression and returns a value. The function defines 
-a `struct V` which inherits from `Expr::Visitor`. 
-The `struct V` has a `Value` object as defined in `value.hpp`. This object has
-both a kind and a data object. `Value` can hold an integer type or a bool type object. 
-`eval` has visit functions for each data type. The visit function takes an
-expression pointer and assigns the type and evaluates the expression.
-
-The `print` function as defined in `print.hpp` has a very similar structure to `eval`
-with a different output. Instead of returning a value `print` outputs the expression 
-in a human readable format. The first component of `print.hpp` is a function to 
-determine whether or not the expression should be printed with parenthesis. Secondly
-the `print` function prints the expression.
-
-Finally `check` defined in `type.hpp` checks an expression to ensure proper typing 
-before the expression is evaluated. The `check` function must be run before `eval`
-in `main.cpp` this confirms that the expression is valid before is is evaluated.
-When `check` finds an error with the typing of an expression, it asserts and halts
-the program.
+2. cd calculator
+3. mkdir build
+4. cd build
+5. cmake ..
+6. make
+7. ./calc
