@@ -67,10 +67,6 @@ struct Parser {
         // Create a vector to hold all fo the finalized expressions
 
         std::vector<Expr*> es = expression_seq();
-
-        return sema.on_parse(es);
-
-
     }
     
     std::vector<Expr*> expression_seq() {
@@ -91,7 +87,7 @@ struct Parser {
     Expr* expression_statement() {
         Expr* e = expression();
         match(semicolon_tok);
-        return sema.on_expression_statement(e);
+        return e;
     }
 
     Expr* expression() {
@@ -102,6 +98,19 @@ struct Parser {
     // a single expression out of them (a statement)
     Expr* additive_expression() {
         Expr* e1 = mutliplicative_exprssion();
+        while (true) {
+            if (match_if(Plus_tok)) {
+                Expr* e2 = unary_expression();
+                e1 = new Add_expr(e1, e2);
+            }
+            else if (match_if(Minus_tok)) {
+                Expr* e2 = unary_exprssion();
+                e1 = new Sub_expr(e1, e2);
+            }
+            else
+                break;
+        }
+        return e1;
 
     }
 
@@ -109,15 +118,15 @@ struct Parser {
         while (true) {
             if (match_if(Mul_tok)) {
                 Expr* e2 = unary_expression();
-                e1 = sema.on_mul(e1, e2);
+                e1 = new Mul_expr(e1, e2);
             }
             else if (match_if(Div_tok)) {
                 Expr* e2 = unary_exprssion();
-                e1 = sema.on_mul(e1, e2);
+                e1 = new Div_expr(e1, e2);
             }
             else if (match_if(Rem_tok)) {
                 Expr* e2 = unary_exprssion();
-                e1 = sema.on_remainder(e1, e2);
+                e1 = new Mod_expr(e1, e2);
             }
             else
                 break;
@@ -132,7 +141,7 @@ struct Parser {
         // the minus sign, but create a negative expression instead
         if (match_if(minus_tok)) {
             expr* e = unary_expression();
-            return sema.on_neg(e);
+            return new Not_expr(e);
         }
         else {
             return primary_expression();
@@ -142,11 +151,14 @@ struct Parser {
     Expr* primary_expression() {
         switch (lookahead()) {
             case true_kw:
-                return sema.on_true(consume());
+                consume();
+                return new Bool_expr(true);
             case false_kw:
-                return sema.on_false(consume());
+                consume();
+                return new Bool_expr(false);
             case int_tok:
-                return sema.on_int(consume());
+                Int_token* tok = consume();
+                return new Int_expr(tok->value);
             case id_tok:
                 return id_expression();
             case lparen_tok: {
@@ -170,54 +182,4 @@ struct Parser {
 
 
 }
-
-//struct Semantics {
-//    Expr* an_integer(token*);
-//    Expr* on_Boolean(token*);
-//    Expr* on_Addition(Expr* e1, Expr* e2);
-//}
-//
-//    
-//    parser(const keyword_table&, symbol_table&, context&, const std::string&);
-//
-//    decl* program();
-//
-//    std::vector<stmt*> statmente_seq();
-//
-//}
-//
-//
-//int Expr() {
-//    int e1 = term();
-//    return e1 + Expr
-//
-//}
-//
-//int ERest() {
-//    if (match_if('+')) {
-//        int e2 = term();
-//        return e2 + ERest();
-//    }
-//
-//    return 0;
-//}
-//
-//
-//Expr *Term() {
-//    Expr* e1 = Factor();
-//
-//    while (true) {
-//        if (match_if(Mul_tok)) {
-//            Expr *e2 = factor()
-//                e1 = new Mul_expr(e1, e2)
-//        }
-//
-//        else if (match_if(Div_tok))
-//
-//        else
-//            break;
-//
-//    }
-//}
-
 
