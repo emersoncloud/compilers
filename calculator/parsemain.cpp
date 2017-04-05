@@ -56,7 +56,7 @@ int main() {
         cout << "\n";
     }
 
-    Parser p(keywords, symbols, cxt, input);
+    Parser p(toks);
     p.parse();
 
 }
