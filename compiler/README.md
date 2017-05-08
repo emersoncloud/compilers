@@ -2,13 +2,13 @@
 #Homework 4:
 
 #How to run
-Clone repository
-cd calculator
-mkdir build
-cd build
-cmake ..
-make
-./calc
+1.	Clone repository
+2.	cd calculator
+3.	mkdir build
+4.	cd build
+5.	cmake ..
+6.	make
+7.	./calc
 
 
 #Overview
@@ -24,7 +24,8 @@ The bool and int types are examples of object types. There is also a function ty
 
 ##Translation 
 
-###Parser The parser should consider two main cases of parsing, a declaration expression eg. var int x = 5 as well as expression statements eg. y + 10. Each statement is a complete set of expressions and is capped with a semi-colon. This statement becomes its own AST to be evaluated during the back-end portion of our compiler. The new expression to parse from homework 4 is the function signature, that defines the function type with a function statement. 
+###Parser
+ The parser should consider two main cases of parsing, a declaration expression eg. var int x = 5 as well as expression statements eg. y + 10. Each statement is a complete set of expressions and is capped with a semi-colon. This statement becomes its own AST to be evaluated during the back-end portion of our compiler. The new expression to parse from homework 4 is the function signature, that defines the function type with a function statement. 
 Statements are executed as part of a function and statements produce side effects. 
 The Parser is defined in parser.hpp. The Parser in this context is an object with a member variable as the sequence of tokens from the lexer. It has one constructor that takes a sequence of tokens and sets its member vector to contain each of those tokens. The class also defines several helper functions to be used by other functions in this class. peek(), lookahead(), consume(), match() and match_if() are all examples of these helper functions. Most of these functions are parallels of the ones found in the lexer. This is because the lexing of characters to create tokens is a very similar process of parsing those tokens into statements.
 One of the most used functions, match_if(token_kind k) has a special behavior. This function only consumes a new token if it matches the type of token passed to the function. This allows one to create if else statements that only get caught if the next token is the token you are looking for.
