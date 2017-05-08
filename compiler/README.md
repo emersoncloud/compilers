@@ -1,5 +1,5 @@
 #Emerson Cloud and Russell Ratcliffe - Compiler Design
-#Homework 4:
+
 
 #How to run
 1.	Clone repository
