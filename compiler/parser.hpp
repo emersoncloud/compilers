@@ -101,6 +101,122 @@ struct Parser {
         return additive_expression();
     }
 
+    Expr* or_expression() {
+        Expr* e1 = and_expr();
+        while(true) {
+            if(match(And_tok)) {
+                Expr* e2 = and_expr();
+                e1 = new or_expression(e1, e2);
+            }
+            else {
+                break;
+            }
+        }
+        return e1;
+    }
+
+    Expr* and_expression() {
+        Expr* e1 = bitOr_expression();
+        while(true) {
+            if(match(And_tok)) {
+                Expr* e2 = bitOr_expression();
+                e1 = new and_expression(e1, e2);
+                //I might need to translate this sumhow e1 = or_expression(e1, e2);
+            }
+            else {
+                break;
+            }
+        }
+        return e1;
+    }
+
+    Expr* bitOr_expression() {
+        Expr* e1 = xor_expression();
+        while(true) {
+            if(match(bitOr_expression)) {
+                Expr* e2 = xor_expression();
+                e1 = new bitOr_expression(e1, e2);
+                //I might need to translate this sumhow e1 = or_expression(e1, e2);
+            }
+            else {
+                break;
+            }
+        }
+        return e1;
+    }
+
+    Expr* xor_expression() {
+        Expr* e1 = bitAnd_expression();
+        while(true) {
+            if(match(Xor_tok)) {
+                Expr* e2 = xor_expression();
+                e1 = new xor_expression(e1, e2);
+                //I might need to translate this sumhow e1 = or_expression(e1, e2);
+            }
+            else {
+                break;
+            }
+        }
+        return e1;
+    }
+
+    Expr* bitAnd_expression() {
+        Expr* e1 = eq_expression();
+        while(true) {
+            if(match(And_tok)) {
+                Expr* e2 = eq_expression();
+                e1 = new bitAnd_expression(e1, e2);
+                //I might need to translate this sumhow e1 = or_expression(e1, e2);
+            }
+            else {
+                break;
+            }
+        }
+        return e1;
+    }
+
+    Expr* eq_expression() {
+        Expr* e1 = order_expression();
+        while(true) {
+            if(match(Eq_tok)) {
+                Expr* e2 = order_expression();
+                e1 = new eq_expression(e1, e2);
+            }
+            else if (match(Neq_tok)) {
+                Expr *e2 = order_expression();
+                e1 = new neq_expression(e1, e2);
+                break;
+            }
+        }
+        return e1;
+    }
+
+    Expr* order_expression() {
+        Expr* e1 = additive_expression();
+        while(true) {
+            if(match(Lt_tok)) {
+                Expr* e2 = additive_expression();
+                e1 = new LtEq_tok(e1, e2);
+            }
+            else if(match(LtEq_tok)) {
+                Expr* e2 = additive_expression();
+                e1 = new LtEq_tok(e1, e2);
+            }
+            if(match(Gt_tok)) {
+                Expr* e2 = additive_expression();
+                e1 = new Gt_tok(e1, e2);
+            }
+            if(match(GtEq_tok)) {
+                Expr* e2 = additive_expression();
+                e1 = new GtEq_tok(e1, e2);
+            }
+            else {
+                break;
+            }
+        }
+        return e1;
+    }
+
     // Here we have to do the right recursion to parse the tokens to form
     // a single expression out of them (a statement)
     Expr* additive_expression() {
