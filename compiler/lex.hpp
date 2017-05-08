@@ -19,6 +19,10 @@ enum Token_kind {
     Bool_tok, Comm_tok,
     BitLeft_tok, BitRight_tok,
     Xor_tok, Space_tok,
+
+    VarInt_tok, VarBool_tok,
+
+    Semi_tok, 
 };
 
 struct Token {
